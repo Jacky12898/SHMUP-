@@ -295,6 +295,8 @@ MonoBehaviour:
   rollMult: -45
   pitchMult: 30
   gameRestartDelay: 2
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 40
   _shieldLevel: 1
 --- !u!4 &542880550
 Transform:
@@ -350,6 +352,9 @@ MonoBehaviour:
   rollMult: -45
   pitchMult: 30
   gameRestartDelay: 2
+  projectilePrefab: {fileID: 8950131618707613370, guid: 8856b6ad033768d4693009f22575dbd8,
+    type: 3}
+  projectileSpeed: 40
   _shieldLevel: 1
 --- !u!1 &705507993
 GameObject:
@@ -712,7 +717,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2145711772}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
