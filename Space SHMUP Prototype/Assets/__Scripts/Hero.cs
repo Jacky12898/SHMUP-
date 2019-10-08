@@ -16,6 +16,7 @@ public class Hero : MonoBehaviour
     public float gameRestartDelay = 2f;
     public GameObject projectilePrefab;
     public float projectileSpeed = 40;
+    public float ammo = 3;
 
     [Header("Set Dynamically")]
     [SerializeField]
@@ -53,7 +54,7 @@ public class Hero : MonoBehaviour
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
 
         // Allow the ship to fire
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && ammo != 0)
         { 
             TempFire();
         }
@@ -81,8 +82,15 @@ public class Hero : MonoBehaviour
 
         lastTriggerGo = go;                                               
 
-        if (go.tag == "Enemy")
+        if (go.tag == "Enemy" && this.tag != "ParryField")
         {  
+            // If the shield was triggered by an enemy
+            shieldLevel--;        // Decrease the level of the shield by 1
+            Destroy(go);          // … and Destroy the enemy           
+        }
+
+        if (go.tag == "Enemy" && this.tag == "ParryField" && Input.GetKeyDown(KeyCode.LeftShift))
+        {
             // If the shield was triggered by an enemy
             shieldLevel--;        // Decrease the level of the shield by 1
             Destroy(go);          // … and Destroy the enemy           
@@ -93,6 +101,7 @@ public class Hero : MonoBehaviour
             print("Triggered by non-Enemy: " + go.name); 
         }
     }
+
     public float shieldLevel
     {
         get
